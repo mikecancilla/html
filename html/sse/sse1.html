@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+</head>
+    <body>
+        <div id="result"></div>
+    </body>
+</html>
+
+<script>
+
+    if (typeof (EventSource) !== undefined)
+    {
+        document.getElementById("result").innerHTML += "SSE supported" + "<br>";
+    } 
+    else
+    {
+        document.getElementById("result").innerHTML += "SSE NOT supported" + "<br>";
+    }
+
+    /*var source = new EventSource("http://localhost:32123/");*/
+    var source = new EventSource("http://localhost/dates");
+
+    source.onopen = function ()
+    {
+        document.getElementById("result").innerHTML += "open" + "<br>";
+    };
+
+    source.onerror = function ()
+    {        
+        document.getElementById("result").innerHTML += "error" + "<br>";
+    };
+
+    source.onmessage = function (event) {
+        document.getElementById("result").innerHTML += event.data + "<br>";
+    };
+
+</script>

@@ -1,0 +1,4 @@
+var source = new EventSource('"http://localhost/data"');
+source.onmessage = function(e){
+  console.log(e.data);
+};
